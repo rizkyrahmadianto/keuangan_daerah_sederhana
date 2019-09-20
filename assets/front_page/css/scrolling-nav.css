@@ -1,0 +1,79 @@
+/*!
+ * Start Bootstrap - Scrolling Nav (https://startbootstrap.com/template-overviews/scrolling-nav)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-scrolling-nav/blob/master/LICENSE)
+ */
+body {
+	font-family: Lato
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Catamaran;
+	font-weight: 800 !important
+}
+
+header {
+	padding: 156px 0 100px;
+}
+
+.bg-header-image {
+	background: url(../img/tim-marshall-114623-unsplash.jpg);
+	background-position: center;
+	background-size: cover
+}
+
+.bg-black {
+    background-color: #000 !important
+}
+
+.text-heading {
+	font-size: 4rem
+}
+
+.text-subheading {
+	font-size: 2rem
+}
+
+.navbar-custom {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: rgba(0, 0, 0, .7)
+}
+
+.navbar-custom .navbar-brand {
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+    font-weight: 700
+}
+
+.navbar-custom .navbar-nav .nav-item .nav-link {
+    text-transform: uppercase;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .1rem
+}
+
+@media (min-width:992px) {
+    /* header.masthead {
+        padding-top: calc(10rem + 55px);
+        padding-bottom: 10rem
+    } */
+
+    header.text-subheading {
+        font-size: 6rem
+    }
+
+    header.text-subheading {
+        font-size: 4rem
+    }
+}
+
+section {
+	padding: 150px 0;
+}
