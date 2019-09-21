@@ -162,7 +162,7 @@ class Menu extends CI_Controller
 
 		/* Untuk menambahkan fitur jumlah berapa rows cari yang ada bisa menggunakan cara
 			$info['total_rows'] = $config['total_rows']; ->(lalu dilempar ke views)
-			// <h5>Results: <?= $total_rows ?></h5> 
+			// <h5>Results: <?= $total_rows ?></h5>
 	*/
 
 		$config['base_url']     = base_url() . 'menu/submenu';
@@ -267,7 +267,7 @@ class Menu extends CI_Controller
 		$this->form_validation->set_rules('active', 'active submenu');
 		$this->form_validation->set_rules('level', 'level', 'trim|required');
 
-		if ($this->input->post('level', true) == null) {
+		if ($this->input->post('active', true) == null) {
 			$status = 0;
 		} else {
 			$status = 1;
