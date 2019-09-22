@@ -33,6 +33,17 @@ class Admin_model extends CI_Model
 		return $query->result_array();
 	}
 
+	public function _getAllData()
+	{
+		$this->db->select('*, COUNT(*) AS jumlah, SUM(person_income) AS total, AVG(person_income) AS rata_rata');
+		$this->db->from('person');
+		$this->db->join('regions', 'regions.region_id = person.region_id');
+		$this->db->group_by('regions.region_id');
+
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
 	public function getTotalRow()
 	{
 		$this->db->select('COUNT(*)');

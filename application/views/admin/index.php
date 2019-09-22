@@ -79,8 +79,12 @@
     </div>
   </div>
 
-  <div class="row mb-4">
-    <div class="col-lg-4">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex mt-4">
+      <a href="<?php echo base_url() ?>admin/reportdata" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
+    </div>
+
+    <div class="d-sm-flex mt-4">
       <!-- search form -->
       <form action="" method="post">
         <div class="input-group">
@@ -92,10 +96,6 @@
       </form>
       <!-- /.search form -->
     </div>
-
-    <!-- <div class="col-lg-8">
-      <a href="<?php echo base_url() ?>admin/addrole" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> Role</a>
-    </div> -->
   </div>
 
 

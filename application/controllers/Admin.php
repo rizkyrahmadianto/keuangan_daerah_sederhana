@@ -80,6 +80,14 @@ class Admin extends CI_Controller
 		$this->load->view('template/footer');
 	}
 
+	public function reportdata()
+	{
+		$this->load->library('mypdf');
+		$filename = "Report_Admin_" . date('dmY');
+		$data['data'] = $this->Admin_model->_getAllData();
+		$this->mypdf->generate('reports/report_admin', $data, $filename);
+	}
+
 	public function role()
 	{
 		$info['title'] 	= "Role";
