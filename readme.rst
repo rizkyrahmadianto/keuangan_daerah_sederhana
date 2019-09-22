@@ -4,6 +4,8 @@ How to Install
 1. Import database sensus.sql from _database's folder into your local server
 2. For role admin, it can be access with email admin@admin.com and password admin123
 
+3. If you want to activate email service, you can setting up on Auth's folder and change on _sendEmail function
+
 ###################
 What is CodeIgniter
 ###################
