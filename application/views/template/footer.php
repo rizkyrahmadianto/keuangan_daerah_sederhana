@@ -83,6 +83,14 @@
       </script>
 
       <script>
+        window.setTimeout(function() {
+          $(".alert").fadeTo(3000, 500).slideUp(500, function() {
+            $(this).remove();
+          });
+        })
+      </script>
+
+      <script>
         $(document).ready(function() {
           $('.sidebar-menu').tree()
         })
@@ -95,7 +103,7 @@
           $(this).next('.custom-file-label').addClass("selected").html(fileName);
         });
 
-        //untuk ajax role akses 
+        //untuk ajax role akses
         $('.access-input').on('click', function() {
           const menuId = $(this).data('menu');
           const roleId = $(this).data('role');

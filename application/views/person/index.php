@@ -51,7 +51,6 @@
             <tr>
               <th>No</th>
               <th>Name</th>
-              <th>Id</th>
               <th>Salary</th>
               <th>Region</th>
               <th>Action</th>
@@ -64,17 +63,8 @@
                 <tr>
                   <td><?php echo ++$start; ?></td>
                   <td><?php echo $p['person_name']; ?></td>
-                  <td><?php echo $p['person_id']; ?></td>
                   <td><?= "Rp. " . number_format($p['person_income'], 0, ',', '.'); ?></td>
-                  <td>
-                    <?php
-                        foreach ($region as $r) {
-                          if ($p['region_id'] == $r['region_id']) {
-                            echo $r['region_name'];
-                          }
-                        }
-                        ?>
-                  </td>
+                  <td><?php echo $p['region_name']; ?></td>
                   <td>
                     <a href="<?php echo base_url() ?>person/deleteperson/<?php echo $p['person_id'] ?>" class="btn btn-sm btn-danger button-delete">Delete</a>
                     <a href="<?php echo base_url() ?>person/editperson/<?php echo $p['person_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
@@ -84,7 +74,7 @@
               <?php endforeach; ?>
             <?php else : ?>
               <tr>
-                <td colspan="6" style="text-align: center">Data not found !</td>
+                <td colspan="5" style="text-align: center">Data not found !</td>
               </tr>
             <?php endif; ?>
           </tbody>

@@ -1,4 +1,12 @@
   <!-- Bootstrap core JavaScript-->
+  <script>
+    window.setTimeout(function() {
+      $(".alert").fadeTo(3000, 500).slideUp(500, function() {
+        $(this).remove();
+      });
+    })
+  </script>
+
   <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

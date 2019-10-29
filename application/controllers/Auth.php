@@ -7,7 +7,6 @@ class Auth extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('cookie');
 	}
 
 	public function index()
@@ -52,16 +51,17 @@ class Auth extends CI_Controller
 					$this->session->set_userdata($file);
 
 					// COOKIE
-					$cookie = array(
+					/* $cookie = array(
 						'name' => "CookieKeaunganDaerah",
 						'value'  => $email,
-            'expire' =>  86500,
-            'secure' => FALSE
+						'expire' =>  86500,
+						'path'   => '/',
+						'secure' => FALSE
 					);
 
 					if ($this->input->post('customCheck')) {
 						$this->input->set_cookie($cookie);
-					}
+					} */
 
 					if ($user['role_id'] == 1) {
 						redirect('admin', 'refresh');
@@ -295,13 +295,13 @@ class Auth extends CI_Controller
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
 
-		$cookie = array(
+		/* $cookie = array(
 			'name' => 'CookieKeaunganDaerah',
 			'value' => '',
 			'expire' => 0,
 		);
 
-		delete_cookie($cookie);
+		delete_cookie($cookie); */
 
 		$this->session->set_flashdata('success', 'You have been logout !');
 		redirect('auth', 'refresh');

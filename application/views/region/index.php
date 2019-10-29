@@ -44,7 +44,7 @@
 
   <!-- DataTales Example -->
   <div class="card shadow mb-4">
-    <div class="card-body" id="result">
+    <div class="card-body">
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
@@ -77,12 +77,13 @@
           </tbody>
         </table>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <?php
-        echo $pagination;
-        ?>
+
+      <div class="row">
+        <div class="col-md-12">
+          <?php
+          echo $pagination;
+          ?>
+        </div>
       </div>
     </div>
   </div>

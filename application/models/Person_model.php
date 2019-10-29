@@ -10,7 +10,7 @@ class Person_model extends CI_Model
 	 */
 	/*public function __construct()
 	    {
-	        
+
 	    }*/
 
 	public function getRegionById($id)
@@ -45,16 +45,22 @@ class Person_model extends CI_Model
 
 	public function getAllPerson($limit, $offset, $keyword)
 	{
+		$this->db->select('*');
+		$this->db->from('person');
+		$this->db->join('regions', 'regions.region_id = person.region_id');
+
 		if ($keyword) {
 			$this->db->like('person_id', $keyword);
 			$this->db->or_like('person_name', $keyword);
-			$this->db->or_like('region_id', $keyword);
+			$this->db->or_like('region_name', $keyword);
 			$this->db->or_like('person_address', $keyword);
 		}
 
-		$this->db->order_by('created_at', 'desc');
+		$this->db->order_by('person.created_at', 'desc');
 
-		$query = $this->db->get('person', $limit, $offset);
+		$this->db->limit($limit, $offset);
+
+		$query = $this->db->get();
 		return $query->result_array();
 	}
 

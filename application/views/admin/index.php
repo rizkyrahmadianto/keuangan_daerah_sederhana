@@ -108,7 +108,6 @@
             <tr>
               <th>No</th>
               <th>Nama Daerah</th>
-              <th>Id</th>
               <th>Jumlah Penduduk</th>
               <th>Total Pendapatan</th>
               <th>Rata-Rata Pendapatan</th>
@@ -123,7 +122,6 @@
                 <tr>
                   <td><?php echo ++$start; ?></td>
                   <td><?php echo $d['region_name']; ?></td>
-                  <td><?php echo $d['region_id']; ?></td>
                   <td><?php echo $d['jumlah']; ?></td>
                   <td><?php echo "Rp. " . number_format($d['total'], 0, ',', '.'); ?></td>
                   <td><?php echo "Rp. " . number_format($d['rata_rata'], 0, ',', '.'); ?></td>
@@ -144,7 +142,7 @@
               else :
                 ?>
               <tr>
-                <td colspan="7" align="center">No data record / found.</td>
+                <td colspan="6" align="center">No data record / found.</td>
               </tr>
             <?php endif; ?>
           </tbody>

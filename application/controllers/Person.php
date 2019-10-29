@@ -19,33 +19,32 @@ class Person extends CI_Controller
     {
         $info['title']          = "Person";
         $info['user']           = $this->Auth_model->getUserSession();
-        $info['region']            = $this->Person_model->getRegion();
 
         // Pencarian
-        if ($this->input->post('submit', true)) {
+        if ($this->input->post('search', true)) {
             $info['keyword'] = $this->input->post('search', true);
             $this->session->set_userdata('keyword', $info['keyword']);
         } else {
             $info['keyword'] = $this->session->userdata('keyword');
         }
 
-        $config['base_url']     = base_url() . 'person/index';
-
-        // Pak Dika Ways
+        $this->db->select('*');
+        $this->db->from('person');
+        $this->db->join('regions', 'regions.region_id = person.region_id');
 
         // Db pagination for searching
         $this->db->like('person_id', $info['keyword']);
         $this->db->or_like('person_name', $info['keyword']);
-        $this->db->or_like('region_id', $info['keyword']);
+        $this->db->or_like('region_name', $info['keyword']);
         $this->db->or_like('person_address', $info['keyword']);
-        $this->db->from('person');
         // Db pagination for searching
 
+        // Pak Dika Ways
         /* Untuk menambahkan fitur jumlah berapa rows cari yang ada bisa menggunakan cara
             $info['total_rows'] = $config['total_rows']; ->(lalu dilempar ke views)
-            // <h5>Results: <?= $total_rows ?></h5> 
+            // <h5>Results: <?= $total_rows ?></h5>
         */
-
+        $config['base_url']     = base_url() . 'person/index';
         $config['total_rows']   = $this->db->count_all_results();
         $config['per_page']     = 5;
         $config['num_links']    = 5;
@@ -75,7 +74,6 @@ class Person extends CI_Controller
 
         $config['num_tag_open']     = '<li class="page-item">';
         $config['num_tag_close']    = '</li>';
-
         $config['attributes']       = array('class' => 'page-link');
         // initialize
         $this->pagination->initialize($config);
