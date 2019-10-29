@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2019 at 06:21 PM
--- Server version: 10.4.6-MariaDB
+-- Generation Time: Oct 25, 2019 at 07:16 AM
+-- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -121,8 +121,8 @@ CREATE TABLE `user_access_menu` (
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
 (2, 1, 2),
-(3, 1, 3),
-(5, 2, 2);
+(5, 2, 2),
+(7, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -282,7 +282,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
