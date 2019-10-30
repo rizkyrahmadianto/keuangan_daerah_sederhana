@@ -24,7 +24,7 @@
     <tr>
       <td align="center">
         <span style="line-height: 1.6; font-weight: bold;">
-          DEPARTEMEN KEUANGAN DAERAH
+          KEUANGAN DAERAH
           <br>INDONESIA
         </span>
       </td>

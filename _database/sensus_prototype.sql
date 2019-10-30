@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2019 at 07:16 AM
+-- Generation Time: Oct 30, 2019 at 10:39 AM
 -- Server version: 10.4.8-MariaDB
--- PHP Version: 7.1.32
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sensus`
+-- Database: `sensus_prototype`
 --
 
 -- --------------------------------------------------------
@@ -99,8 +99,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `created_at`) VALUES
-(2, 'Admin', 'admin@admin.com', '10735487_1575164376038815_43211914_n.jpg', '$2y$10$ojVg/Mvr9wpLnHNd.9AxXOlpSEWuivT9dQDbnoZx5Hw9MLaCFjmWK', 1, 1, 20190323),
-(5, 'Joko Susilo', 'joko@gmail.com', 'default.jpg', '$2y$10$tRGSoeXANULbOTrnEt5PIecTsUiNwOIPMVMP5mbWnSDTks6lxNl46', 2, 1, 1553410535);
+(2, 'Admin Sensus', 'admin@admin.com', '10735487_1575164376038815_43211914_n.jpg', '$2y$10$ojVg/Mvr9wpLnHNd.9AxXOlpSEWuivT9dQDbnoZx5Hw9MLaCFjmWK', 1, 1, 20190323),
+(13, 'Member Sensus', 'member@member.com', 'default.jpg', '$2y$10$omFLujl4FxXqbXXYl6b.P.80lkQR.GfLhixecqH/FpzTrR5PHJddC', 2, 1, 1572420339);
 
 -- --------------------------------------------------------
 
@@ -120,9 +120,11 @@ CREATE TABLE `user_access_menu` (
 
 INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (1, 1, 1),
-(2, 1, 2),
 (5, 2, 2),
-(7, 1, 3);
+(7, 1, 3),
+(8, 1, 2),
+(9, 1, 4),
+(10, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -142,7 +144,8 @@ CREATE TABLE `user_menu` (
 INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (1, 'Admin'),
 (2, 'Master'),
-(3, 'Menu');
+(3, 'Menu'),
+(4, 'Report');
 
 -- --------------------------------------------------------
 
@@ -189,7 +192,8 @@ INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active
 (4, 2, 'Person', 'person', 'fas fa-users', 1, 'person'),
 (5, 2, 'Regions', 'region', 'fas fa-globe-asia', 1, 'region'),
 (6, 3, 'Management Menu', 'menu', 'fas fa-minus', 1, 'menu'),
-(7, 3, 'Management Sub Menu', 'menu/submenu', 'fas fa-bars', 1, 'menu/submenu');
+(7, 3, 'Management Sub Menu', 'menu/submenu', 'fas fa-bars', 1, 'menu/submenu'),
+(8, 4, 'Report Sensus', 'report', 'fas fa-print', 1, 'report');
 
 -- --------------------------------------------------------
 
@@ -276,19 +280,19 @@ ALTER TABLE `regions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -300,13 +304,13 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `user_sub_menu`
 --
 ALTER TABLE `user_sub_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

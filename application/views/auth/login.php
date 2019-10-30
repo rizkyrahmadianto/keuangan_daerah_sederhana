@@ -39,12 +39,15 @@
                     <input type="password" class="form-control form-control-user" name="password" id="password" placeholder="Password">
                     <small class="form-text text-danger"><?php echo form_error('password') ?></small>
                   </div>
-                  <!-- <div class="form-group">
-                    <div class="custom-control custom-checkbox small">
-                      <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck">
-                      <label class="custom-control-label" for="customCheck">Remember Me</label>
-                    </div>
-                  </div> -->
+
+                  <div class="form-group">
+                    <p>Demo Access</p>
+                  </div>
+                  <div class="form-group">
+                    <small>email : admin@admin.com</small>
+                    <small>password : admin123</small>
+                  </div>
+                  <hr>
                   <div class="col-md">
                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                   </div>
