@@ -5,7 +5,7 @@ class Region_model extends CI_Model
 {
     /* public function __construct()
         {
-            
+
         } */
 
     public function getRegionById($id)
@@ -77,7 +77,7 @@ class Region_model extends CI_Model
 
     public function deleteDataRegion($id)
     {
-        $this->db->where('region_id', $id);
-        $this->db->delete('regions');
+      $this->db->delete('regions', array('region_id' => $id));
+      $this->db->delete('person', array('region_id' => $id));
     }
 }

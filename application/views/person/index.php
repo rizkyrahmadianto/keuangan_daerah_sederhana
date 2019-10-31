@@ -66,11 +66,9 @@
                   <td><?= "Rp. " . number_format($p['person_income'], 0, ',', '.'); ?></td>
                   <td><?php echo $p['region_name']; ?></td>
                   <td>
-                    <?php
-                        if ($user['role_id'] == 1) {
-                          echo "<a href='" . base_url() . "'person/deleteperson/'" . $p['person_id'] . "' class='btn btn-sm btn-danger button-delete'>Delete</a>";
-                        }
-                        ?>
+                    <?php if ($user['role_id'] == 1) : ?>
+                      <a href=" <?php echo base_url() ?>person/deleteperson/<?php echo $p['person_id'] ?>" class="btn btn-sm btn-danger button-delete">Delete</a>
+                    <?php endif; ?>
                     <a href="<?php echo base_url() ?>person/editperson/<?php echo $p['person_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
                     <a href="<?php echo base_url() ?>person/detailperson/<?php echo $p['person_id'] ?>" class="btn btn-sm btn-success">Detail</a>
                   </td>

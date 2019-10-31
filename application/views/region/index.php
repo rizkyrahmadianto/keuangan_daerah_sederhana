@@ -63,11 +63,9 @@
                   <td><?php echo ++$start; ?></td>
                   <td><?php echo $r['region_name']; ?></td>
                   <td>
-                    <?php
-                        if ($user['role_id'] == 1) {
-                          echo "<a href='" . base_url() . "'region/deleteRegion/'" . $r['region_id'] . "' class='btn btn-sm btn-danger button-delete'>Delete</a>";
-                        }
-                        ?>
+                    <?php if ($user['role_id'] == 1) : ?>
+                      <a href=" <?php echo base_url() ?>region/deleteRegion/<?php echo $r['region_id'] ?>" class="btn btn-sm btn-danger button-delete">Delete</a>
+                    <?php endif; ?>
                     <a href="<?php echo base_url() ?>region/editRegion/<?php echo $r['region_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
                     <a href="<?php echo base_url() ?>region/detailRegion/<?php echo $r['region_id'] ?>" class="btn btn-sm btn-success">Detail</a>
                   </td>
