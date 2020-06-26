@@ -83,10 +83,10 @@ class Report extends CI_Controller
 
   public function printReport()
   {
-    $this->load->library('pdf');
+    $this->load->library('mypdf');
     $filename = "Report_Admin_" . date('dmY');
     $data['data'] = $this->Admin_model->_getAllData();
-    $this->pdf->generate('reports/print-report', $data, $filename);
+    $this->mypdf->generate('reports/print-report', $data, $filename);
   }
 }
 

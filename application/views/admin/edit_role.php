@@ -34,7 +34,7 @@
           <input type="text" class="form-control" id="name" name="name" placeholder="Enter role name" value="<?php echo $detail['role']; ?>">
           <small class="form-text text-danger"><?= form_error('name'); ?></small>
         </div>
-        <a href="<?php echo base_url(); ?>admin/role" class="btn btn-secondary">Back</a>
+        <a href="<?php echo base_url(); ?>usercontrol" class="btn btn-secondary">Back</a>
         <button type="submit" class="btn btn-success pull-right">Update</button>
       </form>
     </div>
@@ -42,4 +42,3 @@
 
 </div>
 <!-- /.container-fluid -->
-

@@ -1,11 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Auth_model extends CI_Model {
+class Auth_model extends CI_Model
+{
 
 	public function __construct()
 	{
-		parent::__construct();	
+		parent::__construct();
 	}
 
 	public function checkUser($data)
@@ -66,6 +67,20 @@ class Auth_model extends CI_Model {
 	{
 		$this->db->set('password', $data);
 		$this->db->where('email', $value);
+		$this->db->update('users');
+	}
+
+	public function updateUserOnline($data)
+	{
+		$this->db->set('is_online', 1);
+		$this->db->where('email', $data);
+		$this->db->update('users');
+	}
+
+	public function updateUserOffline($data)
+	{
+		$this->db->set('is_online', 0);
+		$this->db->where('email', $data);
 		$this->db->update('users');
 	}
 }

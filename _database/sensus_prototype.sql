@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2019 at 10:39 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Jun 26, 2020 at 08:41 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -91,6 +91,7 @@ CREATE TABLE `users` (
   `password` varchar(256) NOT NULL,
   `role_id` int(11) NOT NULL,
   `is_active` int(1) NOT NULL,
+  `is_online` int(1) NOT NULL,
   `created_at` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -98,9 +99,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `created_at`) VALUES
-(2, 'Admin Sensus', 'admin@admin.com', '10735487_1575164376038815_43211914_n.jpg', '$2y$10$ojVg/Mvr9wpLnHNd.9AxXOlpSEWuivT9dQDbnoZx5Hw9MLaCFjmWK', 1, 1, 20190323),
-(13, 'Member Sensus', 'member@member.com', 'default.jpg', '$2y$10$omFLujl4FxXqbXXYl6b.P.80lkQR.GfLhixecqH/FpzTrR5PHJddC', 2, 1, 1572420339);
+INSERT INTO `users` (`id`, `name`, `email`, `image`, `password`, `role_id`, `is_active`, `is_online`, `created_at`) VALUES
+(2, 'Admin Keuangan Daerah', 'admin@admin.com', '69b6d1380ef91cc3ab7e4e17ca1a96ab.png', '$2y$10$ojVg/Mvr9wpLnHNd.9AxXOlpSEWuivT9dQDbnoZx5Hw9MLaCFjmWK', 1, 1, 0, 20190323),
+(13, 'Member Keuangan Daerah', 'member@member.com', '092d8e93d78769d2bdafc8e80c4db0eb.png', '$2y$10$omFLujl4FxXqbXXYl6b.P.80lkQR.GfLhixecqH/FpzTrR5PHJddC', 2, 1, 0, 1572420339);
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,9 @@ INSERT INTO `user_access_menu` (`id`, `role_id`, `menu_id`) VALUES
 (7, 1, 3),
 (8, 1, 2),
 (9, 1, 4),
-(10, 2, 4);
+(10, 2, 4),
+(11, 1, 5),
+(13, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -145,7 +148,8 @@ INSERT INTO `user_menu` (`id`, `menu`) VALUES
 (1, 'Admin'),
 (2, 'Master'),
 (3, 'Menu'),
-(4, 'Report');
+(4, 'Report'),
+(5, 'User Control');
 
 -- --------------------------------------------------------
 
@@ -188,7 +192,7 @@ CREATE TABLE `user_sub_menu` (
 
 INSERT INTO `user_sub_menu` (`id`, `menu_id`, `title`, `url`, `icon`, `is_active`, `level`) VALUES
 (1, 1, 'Dashboard', 'admin', 'fas fa-tachometer-alt', 1, 'admin'),
-(2, 1, 'Role', 'admin/role', 'fa fa-user-secret', 1, 'admin'),
+(2, 5, 'Role', 'usercontrol', 'fa fa-user-secret', 1, 'usercontrol'),
 (4, 2, 'Person', 'person', 'fas fa-users', 1, 'person'),
 (5, 2, 'Regions', 'region', 'fas fa-globe-asia', 1, 'region'),
 (6, 3, 'Management Menu', 'menu', 'fas fa-minus', 1, 'menu'),
@@ -286,13 +290,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_role`
@@ -310,7 +314,7 @@ ALTER TABLE `user_sub_menu`
 -- AUTO_INCREMENT for table `user_token`
 --
 ALTER TABLE `user_token`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

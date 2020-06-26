@@ -5,7 +5,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; <?php echo date('Y') ?> <a href="https://goo.gl/otqUXt" target="_blank">Sensus Admin</a>.</span> All rights reserved.
+            <span>Copyright &copy; <?php echo date('Y') ?> <a href="<?php echo base_url(); ?>">Keuangan Daerah</a>.</span> All rights reserved.
           </div>
         </div>
       </footer>
@@ -40,22 +40,8 @@
         </div>
       </div>
 
-      <!-- Bootstrap core JavaScript-->
-      <script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
-      <script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-      <!-- Core plugin JavaScript-->
-      <script src="<?php echo base_url(); ?>assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-      <!-- Custom scripts for all pages-->
-      <script src="<?php echo base_url(); ?>assets/js/sb-admin-2.min.js"></script>
-
-      <!-- Page level plugins -->
-      <script src="<?php echo base_url(); ?>assets/vendor/chart.js/Chart.min.js"></script>
-
-      <!-- Page level custom scripts -->
-      <script src="<?php echo base_url(); ?>assets/js/demo/chart-area-demo.js"></script>
-      <script src="<?php echo base_url(); ?>assets/js/demo/chart-pie-demo.js"></script>
+      <!-- <script src="<?php echo base_url(); ?>assets/js/format-money.js"></script> -->
+      <!-- <script src="<?php echo base_url(); ?>assets/js/search_autocomplete.js"></script> -->
 
       <!-- Custom Script -->
       <script src="<?php echo base_url(); ?>assets/sweet_alert/dist/sweetalert2.all.min.js"></script>
@@ -90,26 +76,20 @@
         })
       </script>
 
-      <script>
+      <!-- <script>
         $(document).ready(function() {
           $('.sidebar-menu').tree()
         })
-      </script>
+      </script> -->
 
       <script>
-        //untuk image file reader
-        $('.custom-file-input').on('change', function() {
-          let fileName = $(this).val().split('\\').pop();
-          $(this).next('.custom-file-label').addClass("selected").html(fileName);
-        });
-
         //untuk ajax role akses
         $('.access-input').on('click', function() {
           const menuId = $(this).data('menu');
           const roleId = $(this).data('role');
 
           $.ajax({
-            url: "<?php echo base_url('admin/accessupdate') ?>",
+            url: "<?php echo base_url('usercontrol/accessupdate') ?>",
             type: "POST",
             data: {
               //object data: variabel(yang diambil dari checkbox)
@@ -117,15 +97,12 @@
               roleId: roleId
             },
             success: function() {
-              document.location.href = "<?php echo base_url('admin/accessrole/'); ?>" + roleId;
+              document.location.href = "<?php echo base_url('usercontrol/accessrole/'); ?>" + roleId;
             }
           });
 
         });
       </script>
-
-      <script src="<?php echo base_url(); ?>assets/js/format-money.js"></script>
-      <script src="<?php echo base_url(); ?>assets/js/search_autocomplete.js"></script>
       </body>
 
       </html>

@@ -25,11 +25,7 @@ class Auth extends CI_Controller
 		}
 
 		if ($this->session->userdata('email')) {
-			if ($this->session->userdata('role_id') == 1) {
-				redirect('admin', 'refresh');
-			} else {
-				redirect('user', 'refresh');
-			}
+			redirect('admin', 'refresh');
 		}
 	}
 
@@ -45,29 +41,15 @@ class Auth extends CI_Controller
 				if (password_verify($pass, $user['password'])) {
 					$file = [
 						'email'     => $this->security->xss_clean(html_escape($user['email'])),
-						'role_id'   => $this->security->xss_clean(html_escape($user['role_id']))
+						'role_id'   => $this->security->xss_clean(html_escape($user['role_id'])),
+						'id'     => $this->security->xss_clean(html_escape($user['id'])),
+						'name'   => $this->security->xss_clean(html_escape($user['name'])),
+						'is_active'     => $this->security->xss_clean(html_escape($user['is_active'])),
+						'is_online'   => $this->security->xss_clean(html_escape($user['is_online']))
 					];
 
 					$this->session->set_userdata($file);
-
-					// COOKIE
-					/* $cookie = array(
-						'name' => "CookieKeaunganDaerah",
-						'value'  => $email,
-						'expire' =>  86500,
-						'path'   => '/',
-						'secure' => FALSE
-					);
-
-					if ($this->input->post('customCheck')) {
-						$this->input->set_cookie($cookie);
-					} */
-
-					if ($user['role_id'] == 1) {
-						redirect('admin', 'refresh');
-					} else {
-						redirect('user', 'refresh');
-					}
+					$this->Auth_model->updateUserOnline($this->session->userdata('email'));
 				} else {
 					$this->session->set_flashdata('error', 'Wrong password !');
 					redirect('auth');
@@ -87,7 +69,7 @@ class Auth extends CI_Controller
 		$config = [
 			'protocol' 	=> 'smtp',
 			'smtp_host'	=> 'ssl://smtp.googlemail.com',
-			'smtp_user'	=> 'your@email.com',
+			'smtp_user'	=> '111201408226@mhs.dinus.ac.id',
 			'smtp_pass'	=> 'password',
 			'smtp_port'	=> 465,
 			'mailtype'	=> 'html',
@@ -98,7 +80,7 @@ class Auth extends CI_Controller
 		$this->load->library('email', $config);
 		$this->email->initialize($config);
 
-		$this->email->from('your@email.com', 'Keuangan Daerah Admin');
+		$this->email->from('111201408226@mhs.dinus.ac.id', 'Keuangan Daerah Admin');
 		$this->email->to($this->input->post('email', true));
 		/*$this->email->cc('another@example.com');
         $this->email->bcc('and@another.com');*/
@@ -164,11 +146,7 @@ class Auth extends CI_Controller
 		}
 
 		if ($this->session->userdata('email')) {
-			if ($this->session->userdata('role_id') == 1) {
-				redirect('admin', 'refresh');
-			} else {
-				redirect('user', 'refresh');
-			}
+			redirect('admin', 'refresh');
 		}
 	}
 
@@ -292,16 +270,10 @@ class Auth extends CI_Controller
 
 	public function logout()
 	{
+		$this->Auth_model->updateUserOffline($this->session->userdata('email'));
+
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('role_id');
-
-		/* $cookie = array(
-			'name' => 'CookieKeaunganDaerah',
-			'value' => '',
-			'expire' => 0,
-		);
-
-		delete_cookie($cookie); */
 
 		$this->session->set_flashdata('success', 'You have been logout !');
 		redirect('auth', 'refresh');

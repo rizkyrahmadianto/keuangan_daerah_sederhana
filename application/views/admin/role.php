@@ -4,10 +4,10 @@
   <!-- Page Heading -->
   <h1 class="h3 mb-2 text-gray-800"><?php echo $title; ?></h1>
 
-  
+
   <div class="row mb-4">
     <div class="col-lg-12">
-      <a href="<?php echo base_url() ?>admin/addrole" class="btn btn-primary"><i class="fa fa-plus"></i> Role</a>
+      <a href="<?php echo base_url() ?>usercontrol/addrole" class="btn btn-primary"><i class="fa fa-plus"></i> Role</a>
     </div>
   </div>
 
@@ -50,9 +50,9 @@
                 <td><?php echo $no++; ?></td>
                 <td><?php echo $r['role']; ?></td>
                 <td>
-                  <a href="<?php echo base_url() ?>admin/deleterole/<?php echo $r['id'] ?>" class="btn btn-sm btn-danger button-delete">Delete</a>
-                  <a href="<?php echo base_url() ?>admin/editrole/<?php echo $r['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                  <a href="<?php echo base_url() ?>admin/accessrole/<?php echo $r['id'] ?>" class="btn btn-sm btn-success">Access</a>
+                  <a href="<?php echo base_url() ?>usercontrol/deleterole/<?php echo $r['id'] ?>" class="btn btn-sm btn-danger button-delete">Delete</a>
+                  <a href="<?php echo base_url() ?>usercontrol/editrole/<?php echo $r['id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="<?php echo base_url() ?>usercontrol/accessrole/<?php echo $r['id'] ?>" class="btn btn-sm btn-success">Access</a>
                 </td>
               </tr>
             <?php endforeach; ?>

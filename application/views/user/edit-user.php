@@ -29,40 +29,41 @@
     <div class="card-body">
       <form action="" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
-            <div class="form-group">
-                <label for="url">User Email</label>
-                <input type="hidden" name="id" id="id" class="form-control">
-                <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $user['email'] ?>" readonly>
-                <small class="form-text text-danger"><?= form_error('email'); ?></small>
-            </div>
-            <div class="form-group">
-                <label for="submenu">User Full Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" value="<?php echo $user['name'] ?>">
-                <small class="form-text text-danger"><?= form_error('name'); ?></small>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-2">Picture</div>
-                <div class="col-sm-10">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <img src="<?php echo base_url() ?>assets/img/profile/<?= $user['image']; ?>" class="img-thumbnail">
-                    </div>
-                    <div class="col-sm-9">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" name="image" id="image">
-                        <label class="custom-file-label" for="image">Choose File</label>
-                        <small class="form-text text-danger"><?= form_error('image'); ?></small>
-                      </div>
-                    </div>
+          <div class="form-group">
+            <label for="url">User Email</label>
+            <input type="hidden" name="id" id="id" class="form-control">
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="<?php echo $user['email'] ?>" readonly>
+            <small class="form-text text-danger"><?= form_error('email'); ?></small>
+          </div>
+          <div class="form-group">
+            <label for="submenu">User Full Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Full Name" value="<?php echo $user['name'] ?>">
+            <small class="form-text text-danger"><?= form_error('name'); ?></small>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-2">Picture</div>
+            <div class="col-sm-10">
+              <div class="row">
+                <div class="col-sm-3">
+                  <img src="<?php echo base_url() ?>assets/img/profile/<?= $user['image']; ?>" class="img-thumbnail">
+                </div>
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <label for="image">Choose File</label>
+                    <input type="file" class="form-control-file" name="image" id="image">
+                    <input type="hidden" name="old_image" id="old_image" value="<?php echo $user['image'] ?>">
+                    <small class="form-text text-danger"><?= form_error('image'); ?></small>
                   </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
         <div class="modal-footer">
-            <a href="<?php echo base_url() ?>user" class="btn btn-secondary">Back</a>
-            <button type="submit" value="Update" name="update" class="btn btn-primary">Update</button>
+          <a href="<?php echo base_url() ?>user" class="btn btn-secondary">Back</a>
+          <button type="submit" value="Update" name="update" class="btn btn-primary">Update</button>
         </div>
-    </form>
+      </form>
     </div>
   </div>
 

@@ -47,6 +47,10 @@
                     <small>email : admin@admin.com</small>
                     <small>password : admin123</small>
                   </div>
+                  <div class="form-group">
+                    <small>email : member@member.com</small>
+                    <small>password : member123</small>
+                  </div>
                   <hr>
                   <div class="col-md">
                     <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>

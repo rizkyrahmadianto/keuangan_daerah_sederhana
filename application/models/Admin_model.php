@@ -135,4 +135,53 @@ class Admin_model extends CI_Model
 		$this->db->where('id', $id);
 		$this->db->delete('user_role');
 	}
+
+	public function getCountRegion()
+	{
+		$this->db->select('COUNT(*)');
+		$this->db->from('regions');
+		return $this->db->count_all_results();
+	}
+
+	public function getGoodRegion()
+	{
+		$this->db->select('AVG(person_income) AS rata_rata');
+		$this->db->from('person');
+		$this->db->join('regions', 'regions.region_id = person.region_id');
+		$this->db->having('AVG(person_income) >', 2200000);
+		$this->db->group_by('regions.region_id');
+
+		return $this->db->count_all_results();
+	}
+
+	public function getWarningRegion()
+	{
+		$this->db->select('AVG(person_income) AS rata_rata');
+		$this->db->from('person');
+		$this->db->join('regions', 'regions.region_id = person.region_id');
+		$this->db->having('AVG(person_income) >', 1700000);
+		$this->db->having('AVG(person_income) <', 2200000);
+		$this->db->group_by('regions.region_id');
+
+		return $this->db->count_all_results();
+	}
+
+	public function getDangerRegion()
+	{
+		$this->db->select('AVG(person_income) AS rata_rata');
+		$this->db->from('person');
+		$this->db->join('regions', 'regions.region_id = person.region_id');
+		$this->db->having('AVG(person_income) <', 1700000);
+		$this->db->group_by('regions.region_id');
+
+		return $this->db->count_all_results();
+	}
+
+	public function getUserOnline()
+	{
+		$this->db->select('COUNT(is_online)');
+		$this->db->from('users');
+		$this->db->where('is_online = 1');
+		return $this->db->count_all_results();
+	}
 }

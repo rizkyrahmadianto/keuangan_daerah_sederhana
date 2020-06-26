@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url() ?>user">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo base_url() ?>">
     <div class="sidebar-brand-icon rotate-n-15">
       <i class="far fa-id-card"></i>
     </div>
@@ -33,15 +33,15 @@
     </div>
     <!-- LOOPING SUB MENU -->
     <?php
-      $menu_id    = $m['id'];
-      $sqlSubMenu = "
+    $menu_id    = $m['id'];
+    $sqlSubMenu = "
         SELECT *
         FROM `user_sub_menu`
         WHERE `menu_id` = $menu_id
         AND `is_active` = 1
       ";
-      $submenu = $this->db->query($sqlSubMenu)->result_array();
-      ?>
+    $submenu = $this->db->query($sqlSubMenu)->result_array();
+    ?>
 
     <?php foreach ($submenu as $sm) : ?>
 

@@ -1,14 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class User extends CI_Controller
+{
 
 	public function __construct()
 	{
-		parent::__construct();	
+		parent::__construct();
 
 		if (!$this->session->userdata('email')) {
-			redirect('auth','refresh');
+			redirect('auth', 'refresh');
 		}
 	}
 
@@ -24,6 +25,24 @@ class User extends CI_Controller {
 		$this->load->view('template/footer');
 	}
 
+	private function _uploadImage()
+	{
+		$config['upload_path']    = './assets/img/profile/';
+		$config['allowed_types']  = 'gif|jpg|png';
+		$config['max_size']       = '2048';
+		$config['maintain_ratio'] = TRUE;
+		$config['quality'] = '60%';
+		$config['encrypt_name'] = TRUE; // md5(uniqid(mt_rand())).$this->file_ext;
+
+		$this->load->library('upload', $config);
+
+		if ($this->upload->do_upload('image')) {
+			return $this->upload->data('file_name');
+		} else {
+			$this->session->set_flashdata('error', $this->upload->display_errors());
+		}
+	}
+
 	public function edit()
 	{
 		$info['title'] 	= "Edit User Page";
@@ -31,30 +50,18 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('name', 'full name', 'trim|required|min_length[5]');
 
-		if (isset($_FILES['image']['name'])) {
-			$config['upload_path']		= './assets/img/profile/';
-			$config['allowed_types']	= 'gif|jpg|png';
-			$config['max_size']			= '2048';
+		if (empty($_FILES['image']['name'])) {
+			$data = [
+				'name' => $this->security->xss_clean(html_escape($this->input->post('name', true)))
+			];
+		} else {
+			$data = [
+				'name' => $this->security->xss_clean(html_escape($this->input->post('name', true))),
+				'image' => $this->_uploadImage()
+			];
 
-			$this->load->library('upload', $config);
-
-			if ($this->upload->do_upload('image')) {
-				$old_image = $info['user']['image'];
-
-				if ($old_image != 'default.jpg') {
-					unlink(FCPATH.'assets/img/profile/'.$old_image);
-				}
-
-				$new_image 	= $this->upload->data('file_name');
-				$data 		= $this->db->set('image', $new_image); 
-			} else {
-				$this->session->set_flashdata('error', $this->upload->display_errors());
-			}
+			@unlink('./assets/img/profile/' . $this->input->post('old_image'));
 		}
-
-		$data = [
-			'name' => $this->security->xss_clean(html_escape($this->input->post('name', true)))
-		];
 
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('template/header', $info);
@@ -64,8 +71,9 @@ class User extends CI_Controller {
 			$this->load->view('template/footer');
 		} else {
 			$this->User_model->updateUser($data);
+
 			$this->session->set_flashdata('success', 'Updated !');
-			redirect('user','refresh');
+			redirect('user', 'refresh');
 		}
 	}
 
@@ -90,11 +98,11 @@ class User extends CI_Controller {
 
 			if (!password_verify($old_pass, $info['user']['password'])) {
 				$this->session->set_flashdata('error', 'Wrong current password !');
-				redirect('user/changepassowrd','refresh');
+				redirect('user/changepassowrd', 'refresh');
 			} else {
 				if ($old_pass == $newpass) {
 					$this->session->set_flashdata('error', 'New password cannot be the same as current password !');
-					redirect('user/changepassowrd','refresh');
+					redirect('user/changepassowrd', 'refresh');
 				} else {
 					$hash_pass = password_hash($newpass, DEFAULT_PASSWORD);
 
@@ -104,7 +112,7 @@ class User extends CI_Controller {
 
 					$this->User_model->updatePassword($data);
 					$this->session->set_flashdata('success', 'Updated !');
-					redirect('user/changepassowrd','refresh');
+					redirect('user/changepassowrd', 'refresh');
 				}
 			}
 		}

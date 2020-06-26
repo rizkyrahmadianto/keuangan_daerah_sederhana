@@ -6,7 +6,7 @@
 
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <div class="d-sm-flex mt-4">
-      <a href="<?php echo base_url() ?>report/printReport" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
+      <a target="__blank" href="<?php echo base_url() ?>report/printReport" class="btn btn-secondary"><i class="fas fa-print"></i> Print</a>
     </div>
 
     <div class="d-sm-flex mt-4">
@@ -43,7 +43,7 @@
             <?php
             if ($data) :
               foreach ($data as $d) :
-                ?>
+            ?>
                 <tr>
                   <td><?php echo ++$start; ?></td>
                   <td><?php echo $d['region_name']; ?></td>
@@ -52,20 +52,20 @@
                   <td><?php echo "Rp. " . number_format($d['rata_rata'], 0, ',', '.'); ?></td>
                   <td>
                     <?php
-                        if ($d['rata_rata'] > 2200000) {
-                          echo '<span class="badge badge-success">Great</span>';
-                        } else if (($d['rata_rata'] > 1700000) && ($d['rata_rata'] < 2200000)) {
-                          echo '<span class="badge badge-warning">Warning</span>';
-                        } else {
-                          echo '<span class="badge badge-danger">Danger</span>';
-                        }
-                        ?>
+                    if ($d['rata_rata'] > 2200000) {
+                      echo '<span class="badge badge-success">Great</span>';
+                    } else if (($d['rata_rata'] > 1700000) && ($d['rata_rata'] < 2200000)) {
+                      echo '<span class="badge badge-warning">Warning</span>';
+                    } else {
+                      echo '<span class="badge badge-danger">Danger</span>';
+                    }
+                    ?>
                   </td>
                 </tr>
               <?php
-                endforeach;
-              else :
-                ?>
+              endforeach;
+            else :
+              ?>
               <tr>
                 <td colspan="6" align="center">No data record / found.</td>
               </tr>
