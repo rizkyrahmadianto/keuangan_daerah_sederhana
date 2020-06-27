@@ -86,5 +86,39 @@
     </div>
   </div>
 
+  <div class="card col-md-12 shadow mb-4">
+    <div class="card-body">
+      <!-- <div id="dataMap" style='width: 400px; height: 300px;'></div> -->
+      <div id="dataMap" style='width: auto; height: 500px;'></div>
+    </div>
+  </div>
+
+
 </div>
 <!-- /.container-fluid -->
+
+<script>
+  $(document).ready(function() {
+    // Making a map and tiles
+    var myMap = L.map('dataMap').setView([51.505, -0.09], 10);
+
+    var attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
+    var tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    var tiles = L.tileLayer(tileUrl, attribution);
+    tiles.addTo(myMap);
+
+    var popup = L.popup()
+      .setLatLng([-6.978581, 110.477068])
+      .setContent('<p>Hello!<br />Please visit our office.</p>')
+      .openOn(myMap);
+
+    /* L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'pk.eyJ1Ijoicml6a3ktcmFobWFkaWFudG8iLCJhIjoiY2tieGx0dHE0MDNnbjJydDZla2o1YzhzMSJ9.paBHWC6qgmx8_U4996mgZA'
+    }).addTo(myMap); */
+  })
+</script>
