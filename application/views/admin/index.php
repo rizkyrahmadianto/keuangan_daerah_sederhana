@@ -100,7 +100,7 @@
 <script>
   $(document).ready(function() {
     // Making a map and tiles
-    var myMap = L.map('dataMap').setView([51.505, -0.09], 10);
+    var myMap = L.map('dataMap').setView([51.505, -0.09], 1);
 
     var attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
     var tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -112,6 +112,39 @@
       .setContent('<p>Hello!<br />Please visit our office.</p>')
       .openOn(myMap);
 
+    // Making a marker with a custom icon 
+    var spaceCraftIcon = L.icon({
+      iconUrl: '<?php echo base_url(); ?>assets/img/satellite.png',
+      iconSize: [50, 50],
+      iconAnchor: [25, 16]
+    });
+
+    var marker = L.marker([0, 0], {
+      icon: spaceCraftIcon
+    }).addTo(myMap);
+
+    const issApiUrl = 'https://api.wheretheiss.at/v1/satellites/25544';
+
+    let firstTime = true;
+
+    async function getIss() {
+      const response = await fetch(issApiUrl);
+      const data = await response.json();
+      const {
+        latitude,
+        longitude
+      } = data;
+
+      marker.setLatLng([latitude, longitude]);
+
+      if (firstTime) {
+        myMap.setView([latitude, longitude], 2);
+      }
+    }
+
+    getIss();
+
+    setInterval(getIss, 1000);
     /* L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
