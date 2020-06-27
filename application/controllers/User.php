@@ -60,7 +60,9 @@ class User extends CI_Controller
 				'image' => $this->_uploadImage()
 			];
 
-			@unlink('./assets/img/profile/' . $this->input->post('old_image'));
+			if ($this->input->post('old_image') != "default.png") {
+				@unlink('./assets/img/profile/' . $this->input->post('old_image'));
+			}
 		}
 
 		if ($this->form_validation->run() == FALSE) {

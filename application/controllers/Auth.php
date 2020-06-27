@@ -121,7 +121,7 @@ class Auth extends CI_Controller
 			$file = [
 				'name' 			=> $this->security->xss_clean(htmlspecialchars($this->input->post('name', true))),
 				'email'			=> htmlspecialchars($email),
-				'image'			=> 'default.jpg',
+				'image'			=> 'default.png',
 				'password'		=> password_hash($this->security->xss_clean(html_escape($this->input->post('password1', true))), PASSWORD_DEFAULT),
 				'role_id'		=> 2,
 				'is_active'		=> 0,
